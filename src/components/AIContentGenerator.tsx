@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AIPrompt } from '../types';
 import { Wand2 } from 'lucide-react';
-import { LoadingSpinner } from './shared/LoadingSpinner';
+import { LoadingSpinner } from './shared/LoadingSpinner'; 
 
 interface Props {
   onGenerate: (content: string) => void;

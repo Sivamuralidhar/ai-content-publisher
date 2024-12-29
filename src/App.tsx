@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { MainLayout } from './components/Layout/MainLayout';
 import { PostEditor } from './components/PostEditor';
@@ -9,8 +8,17 @@ import { Pricing } from './pages/Pricing';
 import { Settings } from './pages/Settings';
 import { SignUp } from './pages/Auth/SignUp';
 import { About } from './pages/About';
-
+import { useEffect } from 'react';
+import { createTables, exampleInsert } from './components/Data/ConnectDB';
 export default function App() {
+  useEffect(() => {
+    const initializeSupabase = async () => {
+      await createTables(); // Create tables
+      await exampleInsert(); // Insert example data
+    };
+
+    initializeSupabase();
+  }, []);
   return (
     <Router>
       <Routes>

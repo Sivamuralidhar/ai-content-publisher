@@ -42,6 +42,21 @@ const plans = [
       "Dedicated support",
     ],
   },
+  {
+    id: 'price_enterprise_pro',
+    name: "Enterprise pro",
+    price: "$199",
+    features: [
+      "Unlimited posts",
+      "Custom AI training",
+      "All social platforms",
+      "Advanced analytics",
+      "Team collaboration",
+      "Custom branding",
+      "API access",
+      "Dedicated support",
+    ],
+  }
 ];
 
 export function Pricing() {
