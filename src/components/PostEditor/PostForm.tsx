@@ -1,4 +1,3 @@
-import React from 'react';
 import { Image, Link } from 'lucide-react';
 import { SocialPlatforms } from './SocialPlatforms';
 import { Platform } from '../../types/platform';
@@ -19,8 +18,7 @@ export function PostForm({
   content,
   image,
   link,
-  selectedPlatforms,
-  platforms,
+  selectedPlatforms, 
   onContentChange,
   onImageChange,
   onLinkChange,

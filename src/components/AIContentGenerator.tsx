@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { AIPrompt } from '../types';
 import { Wand2 } from 'lucide-react';
 import { LoadingSpinner } from './shared/LoadingSpinner';
+import { invokeModel } from '../data/connectModel';
+
 
 interface Props {
   onGenerate: (content: string) => void;
@@ -18,9 +20,11 @@ export function AIContentGenerator({ onGenerate }: Props) {
   const handleGenerate = async () => {
     setLoading(true);
     // Simulate API call
-    setTimeout(() => {
-      const content = `Generated content about ${prompt.topic} in a ${prompt.tone} tone.`;
-      onGenerate(content);
+
+    setTimeout(async () => {
+      const content = `Generated content about ${prompt.topic} in a ${prompt.tone} tone along with reference url.`;
+      const response = await invokeModel(content);
+      onGenerate(response);
       setLoading(false);
     }, 2000);
   };
