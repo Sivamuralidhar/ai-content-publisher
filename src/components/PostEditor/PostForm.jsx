@@ -1,19 +1,6 @@
 import React from 'react';
 import { Image, Link } from 'lucide-react';
 import { SocialPlatforms } from './SocialPlatforms';
-import { Platform } from '../../types/platform';
-
-interface PostFormProps {
-  content: string;
-  image: string;
-  link: string;
-  selectedPlatforms: Platform[];
-  platforms: Platform[];
-  onContentChange: (content: string) => void;
-  onImageChange: (image: string) => void;
-  onLinkChange: (link: string) => void;
-  onPlatformsChange: (platforms: Platform[]) => void;
-}
 
 export function PostForm({
   content,
@@ -25,7 +12,7 @@ export function PostForm({
   onImageChange,
   onLinkChange,
   onPlatformsChange,
-}: PostFormProps) {
+}) {
   return (
     <div className="space-y-6">
       <div>

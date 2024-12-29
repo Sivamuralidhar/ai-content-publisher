@@ -1,8 +1,7 @@
 import React from 'react';
 import { Twitter, Facebook, Instagram, MessageCircle, Hash, Linkedin } from 'lucide-react';
-import { Platform, PlatformConfig } from '../../types/platform';
 
-const PLATFORM_CONFIG: Record<Platform, PlatformConfig> = {
+const PLATFORM_CONFIG = {
   twitter: {
     icon: Twitter,
     label: 'Twitter',
@@ -41,13 +40,7 @@ const PLATFORM_CONFIG: Record<Platform, PlatformConfig> = {
   },
 };
 
-interface SocialMediaButtonProps {
-  platform: Platform;
-  selected: boolean;
-  onClick: () => void;
-}
-
-export function SocialMediaButton({ platform, selected, onClick }: SocialMediaButtonProps) {
+export function SocialMediaButton({ platform, selected, onClick }) {
   const config = PLATFORM_CONFIG[platform];
   const Icon = config.icon;
 

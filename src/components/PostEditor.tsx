@@ -7,7 +7,7 @@ import { PostPreview } from './Preview/PostPreview';
 import { Toast } from './shared/Toast';
 import { useStore } from '../store/useStore';
 
-const platforms: Platform[] = ['twitter', 'facebook', 'instagram', 'reddit', 'threads', 'linkedin'];
+const platforms: Platform[] = ['twitter', 'facebook', 'instagram', 'reddit', 'threads'];
 
 export function PostEditor() {
   const { addPost } = useStore();
@@ -57,7 +57,7 @@ export function PostEditor() {
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 shadow-sm">
         <AIContentGenerator onGenerate={setContent} />
       </div>
-
+      
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
         <div className="p-6 space-y-6">
           <PostForm
@@ -71,7 +71,7 @@ export function PostEditor() {
             onLinkChange={setLink}
             onPlatformsChange={setSelectedPlatforms}
           />
-
+          
           <PostActions
             onPreview={handlePreview}
             onPublish={handlePublish}
@@ -88,9 +88,9 @@ export function PostEditor() {
       )}
 
       {showToast && (
-        <Toast
-          message="Post published successfully!"
-          onClose={() => setShowToast(false)}
+        <Toast 
+          message="Post published successfully!" 
+          onClose={() => setShowToast(false)} 
         />
       )}
     </div>
