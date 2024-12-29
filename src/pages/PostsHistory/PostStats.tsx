@@ -1,6 +1,6 @@
 import React from 'react';
 import { Post } from '../../types';
-import { BarChart2, Share2, Clock } from 'lucide-react';
+import { BarChart2, Share2, Clock, Infinity } from 'lucide-react';
 
 interface PostStatsProps {
   posts: Post[];
@@ -13,13 +13,13 @@ export function PostStats({ posts }: PostStatsProps) {
     thisMonth: posts.filter(post => {
       const now = new Date();
       const postDate = new Date(post.publishedAt || post.createdAt);
-      return postDate.getMonth() === now.getMonth() && 
-             postDate.getFullYear() === now.getFullYear();
+      return postDate.getMonth() === now.getMonth() &&
+        postDate.getFullYear() === now.getFullYear();
     }).length
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
       <StatCard
         icon={BarChart2}
         label="Total Posts"
@@ -31,6 +31,11 @@ export function PostStats({ posts }: PostStatsProps) {
         value={stats.platforms}
       />
       <StatCard
+        icon={Infinity}
+        label="Daily limit"
+        value={stats.platforms}
+      />
+      <StatCard
         icon={Clock}
         label="Posts This Month"
         value={stats.thisMonth}
@@ -39,7 +44,7 @@ export function PostStats({ posts }: PostStatsProps) {
   );
 }
 
-function StatCard({ icon: Icon, label, value }: { 
+function StatCard({ icon: Icon, label, value }: {
   icon: React.ElementType;
   label: string;
   value: number;
