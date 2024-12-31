@@ -26,7 +26,7 @@ export function AIContentGenerator({ onGenerate }: Props) {
       const response = await invokeModel(content);
       onGenerate(response);
       setLoading(false);
-    }, 2000);
+    }, 500);
   };
 
   return (
