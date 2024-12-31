@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Post } from '../../types';
 import { format } from 'date-fns';
-import { Clock, Send, ExternalLink } from 'lucide-react';
+import { Clock, Send, ExternalLink, Download } from 'lucide-react';
+import { DownloadOptions } from '../../components/PostHistory/DownloadOptionsProps';
 
 interface PostCardProps {
   post: Post;
 }
 
 export function PostCard({ post }: PostCardProps) {
+  const [showDownloadOptions, setShowDownloadOptions] = useState(false);
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex justify-between items-start mb-4">
@@ -15,15 +18,31 @@ export function PostCard({ post }: PostCardProps) {
           <Clock size={16} />
           {format(post.createdAt, 'PPp')}
         </div>
-        <div className="flex gap-2">
-          {post.platforms.map((platform) => (
-            <span
-              key={platform}
-              className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2">
+            {post.platforms.map((platform) => (
+              <span
+                key={platform}
+                className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+              >
+                {platform}
+              </span>
+            ))}
+          </div>
+          <div className="relative">
+            <button
+              onClick={() => setShowDownloadOptions(!showDownloadOptions)}
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
             >
-              {platform}
-            </span>
-          ))}
+              <Download size={18} className="text-gray-600 dark:text-gray-400" />
+            </button>
+            {showDownloadOptions && (
+              <DownloadOptions
+                post={post}
+                onClose={() => setShowDownloadOptions(false)}
+              />
+            )}
+          </div>
         </div>
       </div>
 
