@@ -1,20 +1,30 @@
 import React from 'react';
 import { Mail, Lock, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { handleSignUp } from '../../data/dataExchange';
 
 export function SignUp() {
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     email: '',
     password: '',
-    name: ''
+    userName: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const isSignedUp = await handleSignUp(formData.email, formData.password, formData.userName);
     // Add validation and signup logic here
-    navigate('/');
+    if (isSignedUp) {
+      alert("Sign-up successful! Please check your email for confirmation.");
+      navigate('/');
+    } else {
+      alert("Error signing up");
+    }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500">
@@ -36,7 +46,10 @@ export function SignUp() {
               <input
                 type="text"
                 className="w-full p-3 border rounded-lg bg-white/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="John Doe"
+                placeholder="fullname"
+                onChange={(event) =>
+                  setFormData({ ...formData, userName: event.target.value })
+                }
                 required
               />
             </div>
@@ -49,7 +62,8 @@ export function SignUp() {
               <input
                 type="email"
                 className="w-full p-3 border rounded-lg bg-white/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
-                placeholder="john@example.com"
+                placeholder="email"
+                onChange={(event) => setFormData({ ...formData, email: event.target.value })}
                 required
               />
             </div>
@@ -63,12 +77,13 @@ export function SignUp() {
                 type="password"
                 className="w-full p-3 border rounded-lg bg-white/50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
                 placeholder="••••••••"
+                onChange={(event) => setFormData({ ...formData, password: event.target.value })}
                 required
               />
             </div>
           </div>
 
-          <button 
+          <button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-[1.02]"
           >
